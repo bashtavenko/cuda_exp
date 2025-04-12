@@ -31,15 +31,8 @@
 *.out
 *.app
 
-# Bazel
-bazel-*
-MODULE.bazel.lock
-
 # CLion, PyCharm
 .idea/
 .clwb/
 
-# Model
-*.yml
-
-third_party/
+cmake-build-debug/
