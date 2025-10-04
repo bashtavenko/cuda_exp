@@ -12,8 +12,21 @@
 [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)  
 [Tensor RT](https://docs.nvidia.com/deeplearning/tensorrt/latest/architecture/architecture-overview.html)
 
-## Local or cloud setup
-GTX 1650  
+## Local or cloud machine
+GTX 1650 - entry level   
 Alternatives     
 [Koyeb](https://www.koyeb.com/)  
 [Vast.ai](https://vast.ai/)
+
+## Local debugging
+
+Set `CMAKE_CUDA_ARCHITECTURES` to the machine graphic card. For GeForce RTX 5070 the architecture is `70`.
+
+On CLion add `cuda-gdb` as a custom debugger in Settings | Build, Execution... | Toolchain and set Debugger to `/usr/bin/cuda-gdb`
+
+This works in cuda-gdb but not in CLion
+
+```bash
+nvcc -g -G -o cmake-build-debug-cuda-debug/hello_main hello_main.cu
+cuda-gdb ./cmake-build-debug-cuda-debug/hello_main
+```

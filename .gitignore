@@ -36,3 +36,5 @@
 .clwb/
 
 cmake-build-debug/
+
+build
