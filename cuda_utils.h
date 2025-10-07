@@ -1,10 +1,12 @@
 #ifndef CUDA_EXP__CUDA_UTILS_H_
 #define CUDA_EXP__CUDA_UTILS_H_
 #include <stdio.h>
+#include <stdlib.h>
 
-static void ReturnIfError(cudaError_t err, const char* file, int line) {
+inline static void ReturnIfError(cudaError_t err, const char* file, int line) {
   if (err != cudaSuccess) {
-    printf("%s in %s at line %d\n", cudaGetErrorString(err), file, line);
+    printf("CUDA Error %d: %s in %s at line %d\n",
+           (int)err, cudaGetErrorString(err), file, line);
     exit(EXIT_FAILURE);
   }
 }

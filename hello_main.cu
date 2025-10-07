@@ -12,8 +12,11 @@ int main(void) {
   // Check for GPU
   int device_count;
   RETURN_IF_ERROR(cudaGetDeviceCount(&device_count));
-
   printf("CUDA Device Count: %d\n", device_count);
+  if (device_count == 0) {
+    printf("No CUDA devices found!\n");
+    return EXIT_FAILURE;
+  }
 
   // Get device properties
   cudaDeviceProp device_prop;
@@ -21,7 +24,8 @@ int main(void) {
 
   // Launch basic kernel
   dummy_kernel<<<1, 1>>>();
-  cudaDeviceSynchronize();
+  RETURN_IF_ERROR(cudaGetLastError());
+  RETURN_IF_ERROR(cudaDeviceSynchronize());
   printf("Launched dummy kernel\n");
 
   // Launch addition
